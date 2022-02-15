@@ -1,0 +1,58 @@
+body {
+    background: #121213;
+	color: white;
+}
+
+textarea {
+	font-family: "Helvetica Neue";
+	
+}
+	
+
+#inputDiv {
+    text-align: center;
+    padding: 10;
+	font-family: "Helvetica Neue";
+
+}
+
+#grid {
+    text-align: center;	
+    padding: 10;
+}
+
+.ubergrid {
+    margin-top: 20;
+    text-align: center;	
+	
+}
+
+.sq {
+    width: 50;
+    height: 50;
+    margin: 2;
+    display: inline-block;
+    /*opacity: 0.5;*/
+}
+
+.active {
+    opacity: 1.0;
+}
+
+.inactive {
+    opacity: 0.5;
+}
+
+.green {
+    background: #6aaa64;
+}
+
+
+
+.black {
+    background: #3a3a3c;
+}
+
+.yellow {
+    background: #c9b458;
+}

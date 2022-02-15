@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="src/style.css"/>
+        <script src="https://unpkg.com/tone"></script>
+        <script src="lib/jquery-3.6.0.min.js"></script>
+        <script src="lib/Tone.js"></script>
+        <script src="src/grid.js"></script>
+        <script src="src/808.js"></script>
+    </head>
+
+    <body>
+        <!-- <div id="start">(start)</div> -->
+
+
+
+<div id = "inputDiv">
+	<textarea id="wordleInput" name="wordleInput"
+          rows="12" cols="8">
+		  	Paste your Wordle here
+	</textarea>
+	BPM:
+	<input id = "bpmInput" type="number" value="120" />
+	
+	
+</div>
+
+<div id = "inputDiv">
+	Wraparound 
+  <input type="checkbox" id="wrapAroundCheck">
+	
+</div>
+
+<div id = "inputDiv">
+	Drums 
+  <input type="checkbox" id="drumsCheck">
+	
+</div>
+        <div id="grid">
+            <!-- <div class="row">
+                <div class="sq green"></div>
+                <div class="sq green"></div>
+                <div class="sq yellow"></div>
+                <div class="sq black"></div>
+                <div class="sq green"></div>
+            </div> -->
+        </div>
+    </body>
+</html>
