@@ -11,13 +11,18 @@
     <body>
         <!-- <div id="start">(start)</div> -->
 
+  <header>
+    <h1>Wordle Sequencer</h1>
 
-
+  </header>
+<div class = row>
+<div class = inputColumn>
+	
 <div id = "inputDiv">
-	<textarea id="wordleInput" name="wordleInput"
-          rows="12" cols="8">
-		  	Paste your Wordle here
-	</textarea>
+	<textarea id="wordleInput" placeholder="Paste your Wordle here" name="wordleInput" rows="12" cols="8" ></textarea>
+</div
+><div id = "inputDiv">
+	
 	BPM:
 	<input id = "bpmInput" type="number" value="120" />
 	
@@ -35,6 +40,16 @@
   <input type="checkbox" id="drumsCheck">
 	
 </div>
+
+<div id = "inputDiv">
+<div class="tab" id = "soundTabs">
+  <button class="tablinks" id = "drumTab">Drums</button>
+  <button class="tablinks" id = "toneTab">Tones</button>
+  <button class="tablinks" id = "bothTab">Both</button>
+</div>
+</div>
+</div>
+<div class = gridColumn>
         <div id="grid">
             <!-- <div class="row">
                 <div class="sq green"></div>
@@ -44,5 +59,20 @@
                 <div class="sq green"></div>
             </div> -->
         </div>
+	</div>
+</div>
+
+    <p>Created by David McFarlane and David Su</p>
+
+<div class = twitterDiv>
+<a href="https://twitter.com/dvd_mcf" class="icon-link" target="_blank">@dvd_mcf</a>
+<a href= "https://d-mcf.com/">d-mcf.com</a>
+</div>
+
+<div class = twitterDiv>
+<a href="https://twitter.com/usdivad" class="icon-link" target="_blank">@usdivad</a>
+<a href= "http://usdivad.com/">usdivad.com/</a>
+
+</div>
     </body>
 </html>

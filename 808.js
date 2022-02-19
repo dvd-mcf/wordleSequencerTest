@@ -5,53 +5,51 @@ window.onload = function() {
     var shouldUseUbergrid = true;
 	var newGrid =  [];            
     var bpm = 120;
-	
-  
-	
-		var toneUrls = new Tone.Players({
+	var input = document.getElementById('wordleInput');
+	var toneUrls = new Tone.Players({
 		            urls: {
-				        "5g": "assets/Organ6.wav",
-						"5y":  "assets/Organ12.wav",
+				        "6g": "assets/Organ6.wav",
+						"6y":  "assets/Organ12.wav",
 						
-						"4g": "assets/Organ5.wav",
-						"4y": "assets/Organ11.wav",
+						"5g": "assets/Organ5.wav",
+						"5y": "assets/Organ11.wav",
 						
-						"3g": "assets/Organ4.wav",
-						"3y": "assets/Organ10.wav",
+						"4g": "assets/Organ4.wav",
+						"4y": "assets/Organ10.wav",
 						
-						"2g": "assets/Organ3.wav",
-						"2y": "assets/Organ9.wav",
+						"3g": "assets/Organ3.wav",
+						"3y": "assets/Organ9.wav",
 						
-						"1g": "assets/Organ2.wav",
-						"1y": "assets/Organ8.wav",
+						"2g": "assets/Organ2.wav",
+						"2y": "assets/Organ8.wav",
 						
-						"0g": "assets/Organ1.wav",
-						"0y": "assets/Organ7.wav",
+						"1g": "assets/Organ1.wav",
+						"1y": "assets/Organ7.wav",
 				       
 		            },
 		            fadeOut: "64n",
 				        }).toDestination();
 						
 						
-		var drumUrls = new Tone.Players({
+	var drumUrls = new Tone.Players({
 		            urls: {
-				        "5g": "assets/808_Cowbell.wav",
-						"5y": "assets/808_Cymbal.wav",
+				        "6g": "assets/808_Cowbell.wav",
+						"6y": "assets/808_Cymbal.wav",
 
-						"4g": "assets/808_TomHi.wav",
-						"4y": "assets/808_TomMid.wav",
+						"5g": "assets/808_TomHi.wav",
+						"5y": "assets/808_TomMid.wav",
 
-						"3g": "assets/808_Clave.wav",
-						"3y": "assets/808_Clap.wav",
+						"4g": "assets/808_Clave.wav",
+						"4y": "assets/808_Clap.wav",
 
-						"2g": "assets/808_HHClosed.wav",
-						"2y": "assets/808_HHOpen.wav",
+						"3g": "assets/808_HHClosed.wav",
+						"3y": "assets/808_HHOpen.wav",
 
-						"1g": "assets/808_Rim.wav",
-						"1y": "assets/808_Snare.wav",
+						"2g": "assets/808_Rim.wav",
+						"2y": "assets/808_Snare.wav",
 
-						"0g": "assets/808_TomLo.wav",
-						"0y": "assets/808_Kick.wav",
+						"1g": "assets/808_TomLo.wav",
+						"1y": "assets/808_Kick.wav",
 
 		            },
 		            fadeOut: "64n",
@@ -62,63 +60,49 @@ window.onload = function() {
 	
 	var playerUrls = toneUrls;
 	
-	var drums = document.querySelector('#drumsCheck');
+
+	var	drumTab = document.querySelector('#drumTab')
 	
-	
-	
-	
-	
-	drums.addEventListener('input', function()
+	drumTab.addEventListener('click', function()
 	{		
-		console.log("Just measured:" + drums)
-		
-		if (drums == true) {
-			
-	    console.log("Drums")
+		playerUrls.stopAll(0);
 		    playerUrls = drumUrls 
-		} else if (drums == false) {
-			
-	    console.log("Tones")
-				
-				playerUrls = toneUrls
-		    }
-			
-		console.log(drums.value)
-			drums = !drums;
 		
 		setupPlayers();
+	
 		
+	});
+	
+	var	toneTab = document.querySelector('#toneTab')
+	
+	toneTab.addEventListener('click', function()
+	{		
+		console.log("Just measured:" + toneTab.textContent)
+	
+		    playerUrls = toneUrls 
+		
+		setupPlayers();
 		
 	});
 	
 	
-	
+	//Wraparound toggle
     var wrapAround = document.querySelector('#wrapAroundCheck');
 	wrapAround.addEventListener('input', function()
 	{		
 		wrapAround = !wrapAround;
-		
 	});
 
-	var input = document.getElementById('wordleInput');
 	
 	
 	
 	//BPM changes
 	var newBPM = document.querySelector('#bpmInput');
-
 	newBPM.addEventListener('input', function()
 	{
 		newBpmDouble = newBPM.value * 2
 		bpm = newBpmDouble
         Tone.Transport.bpm.value = newBpmDouble;
-		
-		
-		console.log(newPlayers.player(1))
-		
-	//	 newPlayers.player(Math.floor(Math.random()*5)).start(0, 0)
-		
-		
 	});
 	
 
@@ -126,24 +110,20 @@ window.onload = function() {
 	
 	
 	
-
+//Input new Wordle
 	input.addEventListener('input', function()
 	{		
-
-
-
+		// split at newlines
 		inputValue = input.value.split('\n');		
+		//
 		inputValue = inputValue.splice(2, 6);
+		
 		newGrid = [];
-
 		
         for (var i=0; i<inputValue.length; i++) {
 
 			word = inputValue[i];
-			
 			var newGridLine = []
-			
-						
 			for (var w=0; w< word.length; w++) {
 							letter = word.charAt(w);
 
@@ -222,7 +202,22 @@ window.onload = function() {
     // Populate the grid display
     function populateGrid() {
         var gridDisp = $("#grid");
+		playerUrls.stopAll(0);
+		
 
+		const blackElements = document.getElementsByClassName("black");
+		    while(blackElements.length > 0){
+		        blackElements[0].parentNode.removeChild(blackElements[0]);
+			}
+			const yellowElements = document.getElementsByClassName("yellow");
+			    while(yellowElements.length > 0){
+			        yellowElements[0].parentNode.removeChild(yellowElements[0]);
+				}
+				const greenElements = document.getElementsByClassName("green");
+				    while(greenElements.length > 0){
+				        greenElements[0].parentNode.removeChild(greenElements[0]);
+					}
+					
         if (shouldUseUbergrid) {
             gridDisp.addClass("ubergrid");
         }
@@ -273,7 +268,7 @@ window.onload = function() {
 
                 for (var j=0; j<row.length; j++) {
                     var cellId = "#sq-" + i + "-" + j;
-                    var cellSound = (grid.length - i - 2) + cell;
+                    var cellSound = (grid.length - i) + cell;
 
                     if (j == currGridIdx) {
                         if (cell != "b") {
@@ -282,7 +277,6 @@ window.onload = function() {
 							}
                      //       console.log("Playing " + i + "," + j);
                             playersIdx = i + playersIdxOffset;
-							console.log(cellSound);
 //                            players[playersIdx][cell].start(time, 0);
 		 playerUrls.player(cellSound).start(0, 0)
 							 // Pass time in for better accuracy
@@ -299,7 +293,7 @@ window.onload = function() {
 
             // Grid index updating:
 
-            if (wrapAround) {   
+            if (!wrapAround) {   
                  currGridIdx = (currGridIdx + 1) % grid[0].length;
 
             } else {
@@ -341,8 +335,8 @@ window.onload = function() {
     // Start on user click
     $("body").click(function() {
 		
-		
-        if (!hasStarted) {
+
+        if (!hasStarted && grid.length >= 1) {
             Tone.start();
             startSequencer();
             hasStarted = true;
